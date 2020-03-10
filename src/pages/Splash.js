@@ -13,31 +13,6 @@ import {process} from '../../env';
 import firebase from 'firebase';
 import AsyncStorage from '@react-native-community/async-storage';
 
-// class Splash extends Component {
-//   static navigationOptions = {
-//     header: null,
-//   };
-//
-//   componentDidMount = async () => {
-//     let firebaseConfig = {
-// apiKey: process.env_FIREBASE_KEY,
-// authDomain: process.env_FIREBASE_DOMAIN,
-// databaseURL: process.env_FIREBASE_DATABASE,
-// projectId: process.env_FIREBASE_PROJECT_ID,
-// storageBucket: process.env_FIREBASE_STORAGE_BUCKET,
-// messagingSenderId: process.env_FIREBASE_SENDER_ID,
-// appId: process.env_FIREBASE_APP_ID,
-//     };
-//
-//     if (!firebase.apps.length) {
-//       // Initialize Firebase
-//       firebase.initializeApp(firebaseConfig);
-//     }
-//     await Auth.onAuthStateChanged(user =>
-//       this.props.navigation.navigate(user ? 'App' : 'Landing'),
-//     );
-//   };
-//   render() {
 export const Splash = props => {
   useEffect(() => {
     const _unsubscribe = props.navigation.addListener('focus', () => {
@@ -48,7 +23,7 @@ export const Splash = props => {
           }, 1500);
         } else {
           setTimeout(() => {
-            props.navigation.navigate('Login');
+            props.navigation.navigate('Landing');
           }, 1500);
         }
       });

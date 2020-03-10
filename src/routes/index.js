@@ -1,20 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-// import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import Landing from '../pages/Landing';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
+import {Login} from '../pages/Login';
+import {Register} from '../pages/Register';
 import {Splash} from '../pages/Splash';
-import Profile from '../pages/FriendProfile';
-import Home from '../pages/Home';
+import {Profile} from '../pages/FriendProfile';
 import MyProfile from '../pages/MyProfile';
 import Chat from '../pages/Chat';
-import {Contact} from '../pages/Contacts';
+import App from '../pages/App';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,7 +27,7 @@ const main = () => {
       }}>
       <Tab.Screen
         name="App"
-        component={Contact}
+        component={App}
         options={{
           tabBarLabel: 'Chat',
           // tabBarIcon: ({color, size}) => (
@@ -40,7 +37,7 @@ const main = () => {
       />
       <Tab.Screen
         name="myProfile"
-        component={Profile}
+        component={MyProfile}
         options={{
           tabBarLabel: 'Profile',
           unmountOnBlur: true,
@@ -140,6 +137,11 @@ export const MainNavigator = () => {
         <Stack.Screen
           name="Chat"
           component={Chat}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="FriendProfile"
+          component={Profile}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

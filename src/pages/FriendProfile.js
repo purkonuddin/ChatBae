@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-SaveAreaView,
+  SafeAreaView,
   View,
   Text,
   TouchableOpacity,
@@ -12,110 +12,106 @@ SaveAreaView,
 } from 'react-native';
 import Header from '../layouts/Header';
 
-export default class Profile extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: navigation.getParam('item').name + "'s Profile",
-    };
-  };
-  constructor(props) {
-    super(props);
-    this.state = {
-      person: props.navigation.getParam('item'),
-      items: props.navigation.getParam('item'),
-    };
-  }
+// export default class Profile extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       person: this.props.route.params.item,
+//       items: this.props.route.params.item,
+//     };
+//   }
 
-  // componentDidMount = async () => {
-  //   const userId = await AsyncStorage.getItem('userid');
-  //   const userName = await AsyncStorage.getItem('user.name');
-  //   const userAvatar = await AsyncStorage.getItem('user.photo');
-  //   const userEmail = await AsyncStorage.getItem('user.email');
-  //   this.setState({userId, userName, userAvatar, userEmail});
-  // };
+// componentDidMount = async () => {
+//   const userId = await AsyncStorage.getItem('userid');
+//   const userName = await AsyncStorage.getItem('user.name');
+//   const userAvatar = await AsyncStorage.getItem('user.photo');
+//   const userEmail = await AsyncStorage.getItem('user.email');
+//   this.setState({userId, userName, userAvatar, userEmail});
+// };
 
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar translucent backgroundColor="transparent" />
-        <Header />
-        <ScrollView>
-          <View
+export const Profile = ({navigation, route}) => {
+  const person = route.params.item;
+  const items = route.params.item;
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar translucent backgroundColor="transparent" />
+      <Header />
+      <ScrollView>
+        <View
+          style={{
+            alignItems: 'center',
+            paddingTop: 60,
+            flex: 1,
+            flexDirection: 'column',
+            backgroundColor: '#f48023',
+            height: 200,
+            justifyContent: 'flex-end',
+          }}>
+          <ImageBackground
+            resizeMode="contain"
             style={{
-              alignItems: 'center',
-              paddingTop: 60,
-              flex: 1,
-              flexDirection: 'column',
-              backgroundColor: '#f48023',
-              height: 200,
-              justifyContent: 'flex-end',
-            }}>
-            <ImageBackground
-              resizeMode="contain"
+              flexDirection: 'row',
+              width: '100%',
+              height: '100%',
+              alignItems: 'flex-end',
+              paddingLeft: 20,
+            }}
+            source={{
+              uri: person.photo,
+            }}
+          />
+        </View>
+        <View style={{marginHorizontal: 20}}>
+          <Text style={{color: '#f48023', marginVertical: 10, fontSize: 22}}>
+            Account
+          </Text>
+          <Text style={{fontSize: 18}}>{person.name}</Text>
+          <Text style={{fontSize: 12, color: '#99A3A4'}}>
+            tap to change Username
+          </Text>
+          <View style={styles.separator} />
+          <Text style={{fontSize: 18}}>{person.email}</Text>
+          <Text style={{fontSize: 12, color: '#99A3A4'}}>Email</Text>
+          <View style={styles.separator} />
+          <Text style={{fontSize: 18}}>Bio</Text>
+          <Text style={{fontSize: 12, color: '#99A3A4'}}>
+            Add a few words about yourself
+          </Text>
+        </View>
+        <View style={styles.bigseparator} />
+        <View style={{marginHorizontal: 20}}>
+          <Text style={{color: '#f48023', marginVertical: 10, fontSize: 22}}>
+            Settings
+          </Text>
+          <TouchableOpacity
+            style={{flexDirection: 'row'}}
+            onPress={() =>
+              navigation.navigate('Chat', {
+                item: person,
+              })
+            }>
+            <Image
               style={{
-                flexDirection: 'row',
-                width: '100%',
-                height: '100%',
-                alignItems: 'flex-end',
-                paddingLeft: 20,
+                width: 25,
+                height: 25,
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginLeft: 6,
               }}
-              source={{
-                uri: this.state.person.photo,
-              }}
+              source={require('../assets/icon/message.png')}
             />
-          </View>
-          <View style={{marginHorizontal: 20}}>
-            <Text style={{color: '#f48023', marginVertical: 10, fontSize: 22}}>
-              Account
+            <Text style={{fontSize: 18, marginLeft: 20}}>
+              Send Message to {person.name}
             </Text>
-            <Text style={{fontSize: 18}}>{this.state.person.name}</Text>
-            <Text style={{fontSize: 12, color: '#99A3A4'}}>
-              tap to change Username
-            </Text>
-            <View style={styles.separator} />
-            <Text style={{fontSize: 18}}>{this.state.person.email}</Text>
-            <Text style={{fontSize: 12, color: '#99A3A4'}}>Email</Text>
-            <View style={styles.separator} />
-            <Text style={{fontSize: 18}}>Bio</Text>
-            <Text style={{fontSize: 12, color: '#99A3A4'}}>
-              Add a few words about yourself
-            </Text>
-          </View>
-          <View style={styles.bigseparator} />
-          <View style={{marginHorizontal: 20}}>
-            <Text style={{color: '#f48023', marginVertical: 10, fontSize: 22}}>
-              Settings
-            </Text>
-            <TouchableOpacity
-              style={{flexDirection: 'row'}}
-              onPress={() =>
-                this.props.navigation.navigate('Chat', {
-                  item: this.state.person,
-                })
-              }>
-              <Image
-                style={{
-                  width: 25,
-                  height: 25,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginLeft: 6,
-                }}
-                source={require('../assets/icon/message.png')}
-              />
-              <Text style={{fontSize: 18, marginLeft: 20}}>
-                Send Message to {this.state.person.name}
-              </Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
 
-            <View style={styles.separator} />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
-}
-
+          <View style={styles.separator} />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
