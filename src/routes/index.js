@@ -12,6 +12,7 @@ import {Profile} from '../pages/FriendProfile';
 import MyProfile from '../pages/MyProfile';
 import Chat from '../pages/Chat';
 import App from '../pages/App';
+import findFriends from '../pages/belumdipakai/Home';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -40,6 +41,17 @@ const main = () => {
         component={MyProfile}
         options={{
           tabBarLabel: 'Profile',
+          unmountOnBlur: true,
+          // tabBarIcon: ({color, size}) => (
+          //   <Icon name="search" color={color} size={size} />
+          // ),
+        }}
+      />
+      <Tab.Screen
+        name="friend"
+        component={findFriends}
+        options={{
+          tabBarLabel: 'Find Friends',
           unmountOnBlur: true,
           // tabBarIcon: ({color, size}) => (
           //   <Icon name="search" color={color} size={size} />
