@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -12,31 +12,16 @@ import {
 } from 'react-native';
 import Header from '../layouts/Header';
 
-// export default class Profile extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       person: this.props.route.params.item,
-//       items: this.props.route.params.item,
-//     };
-//   }
-
-// componentDidMount = async () => {
-//   const userId = await AsyncStorage.getItem('userid');
-//   const userName = await AsyncStorage.getItem('user.name');
-//   const userAvatar = await AsyncStorage.getItem('user.photo');
-//   const userEmail = await AsyncStorage.getItem('user.email');
-//   this.setState({userId, userName, userAvatar, userEmail});
-// };
-
 export const Profile = ({navigation, route}) => {
   const person = route.params.item;
-  const items = route.params.item;
 
+  useEffect(() => {
+    console.log(person);
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />
-      <Header />
+      <Header title={person.name + ' Profile'} />
       <ScrollView>
         <View
           style={{

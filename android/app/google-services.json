@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "976794834291",
+    "firebase_url": "https://chatbae-4d1e9.firebaseio.com",
+    "project_id": "chatbae-4d1e9",
+    "storage_bucket": "chatbae-4d1e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976794834291:android:a613fc97f051778df46106",
+        "android_client_info": {
+          "package_name": "com.deepl0n9.chatbae"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "976794834291-vflf954a94741bmkfa2r96qfjttolcpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYYN7Iregnd4reYRvqX2LDAnSJH6umquI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "976794834291-vflf954a94741bmkfa2r96qfjttolcpc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

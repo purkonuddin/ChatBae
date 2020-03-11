@@ -16,29 +16,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Geolocation from 'react-native-geolocation-service';
 import {Database, Auth} from '../constant/config';
 
-// export default class Login extends Component {
-//   static navigationOptions = {
-//     header: null,
-//   };
-//   constructor(props) {
-//     super(props);
-//     this._isMounted = false;
-//     this.state = {
-//       email: '',
-//       password: '',
-//     };
-//   }
-//   componentDidMount = async () => {
-//     this._isMounted = true;
-//     await this.getLocation();
-//   };
-//
-//   componentWillUnmount() {
-//     this._isMounted = false;
-//     Geolocation.clearWatch();
-//     Geolocation.stopObserving();
-//   }
-
 export const Login = props => {
   const [_isMounted, setMount] = useState(false);
   const [email, setEmail] = useState('');

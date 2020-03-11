@@ -9,11 +9,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default class Chat extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       message: '',
       messageList: [],
-      person: this.props.route.params.item,
+      person: props.route.params.item,
       userId: AsyncStorage.getItem('userid'),
       userName: AsyncStorage.getItem('user.name'),
       userAvatar: AsyncStorage.getItem('user.photo'),
@@ -64,6 +63,7 @@ export default class Chat extends Component {
   };
 
   componentDidMount = async () => {
+    console.log(this.state.pesron);
     const userId = await AsyncStorage.getItem('userid');
     const userName = await AsyncStorage.getItem('user.name');
     const userAvatar = await AsyncStorage.getItem('user.photo');
@@ -93,16 +93,6 @@ export default class Chat extends Component {
     );
   }
 
-  /// icon berganti saat input text
-  // renderSend = props => {
-  //   if (!props.text.trim()) {
-  //     // text box empty
-  //     return <Icon name="mic" color="#f48023" size={50} />;
-  //   }
-
-  //   return <Icon name="send" color="#f48023" size={50} />;
-  // };
-
   renderSend(props) {
     return (
       <Send {...props}>
@@ -128,7 +118,7 @@ export default class Chat extends Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: 'white'}}>
-        <Header />
+        <Header title={this.state.person.name} />
         <GiftedChat
           renderSend={this.renderSend}
           renderBubble={this.renderBubble}
@@ -146,4 +136,3 @@ export default class Chat extends Component {
     );
   }
 }
-

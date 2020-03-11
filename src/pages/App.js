@@ -180,7 +180,7 @@ export default class App extends Component {
     this.setState({uid: uid, refreshing: true});
     Database.ref('/user').on('child_added', data => {
       let person = data.val();
-      if (person.id != uid) {
+      if (person.id !== uid && person.name !== null) {
         this.setState(prevData => {
           return {userList: [...prevData.userList, person]};
         });
@@ -221,11 +221,11 @@ export default class App extends Component {
                   ellipsizeMode="tail">
                   {item.name}
                 </Text>
-                {item.status == 'Online' ? (
-                  <Text style={styles.statusol}>{item.status}</Text>
-                ) : (
-                  <Text style={styles.status}>{item.status}</Text>
-                )}
+                {/* {item.status == 'Online' ? ( */}
+                {/*   <Text style={styles.statusol}>{item.status}</Text> */}
+                {/* ) : ( */}
+                {/*   <Text style={styles.status}>{item.status}</Text> */}
+                {/* )} */}
               </View>
               <View style={styles.msgContainer}>
                 <Text style={styles.email}>{item.email}</Text>
