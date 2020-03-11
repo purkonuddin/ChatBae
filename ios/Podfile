@@ -38,6 +38,8 @@ target 'chatBae' do
 
   pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
 
+  pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
+
   target 'chatBaeTests' do
     inherit! :search_paths
     # Pods for testing

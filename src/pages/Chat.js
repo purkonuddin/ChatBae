@@ -5,6 +5,7 @@ import Header from '../layouts/Header';
 import firebase from 'firebase';
 import {GiftedChat, Bubble, Send} from 'react-native-gifted-chat';
 import AsyncStorage from '@react-native-community/async-storage';
+import OneSignal from 'react-native-onesignal'; // Import package from node modules
 
 export default class Chat extends Component {
   constructor(props) {
@@ -18,6 +19,15 @@ export default class Chat extends Component {
       userName: AsyncStorage.getItem('user.name'),
       userAvatar: AsyncStorage.getItem('user.photo'),
     };
+  }
+  componentDidMount(properties) {
+    OneSignal.init(`${process.env_ONE_SIGNAL_ID}`, {
+      kOSSettingsKeyAutoPrompt: true,
+    }); // set kOSSettingsKeyAutoPrompt to false prompting manually on iOS
+    OneSignal.addEventListener('received', this.onReceived);
+  }
+  componentWillUnmount() {
+    OneSignal.removeEventListener('received', this.onReceived);
   }
 
   onSend = async () => {
@@ -146,4 +156,3 @@ export default class Chat extends Component {
     );
   }
 }
-
