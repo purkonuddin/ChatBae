@@ -34,7 +34,7 @@ const main = () => {
           tabBarLabel: 'Chat',
           tabBarIcon: ({color, size}) => (
             <Image
-              source={require('../assets/icon/chat.jpg')}
+              source={require('../assets/icon/chat.png')}
               style={{height: 25, width: 25}}
             />
           ),

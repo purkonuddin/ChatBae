@@ -26,7 +26,8 @@ export const Register = props => {
   useEffect(() => {
     getLocation();
     return () => {
-      getLocation();
+      Geolocation.clearWatch();
+      Geolocation.stopObserving();
     };
   }, []);
 
