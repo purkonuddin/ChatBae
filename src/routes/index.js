@@ -12,6 +12,8 @@ import {Profile} from '../pages/FriendProfile';
 import MyProfile from '../pages/MyProfile';
 import Chat from '../pages/Chat';
 import App from '../pages/App';
+import FindFriends from '../pages/FindFriends';
+import {Icon, Image} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,9 +32,26 @@ const main = () => {
         component={App}
         options={{
           tabBarLabel: 'Chat',
-          // tabBarIcon: ({color, size}) => (
-          //   <Icon name="home" color={color} size={size} />
-          // ),
+          tabBarIcon: ({color, size}) => (
+            <Image
+              source={require('../assets/icon/chat.jpg')}
+              style={{height: 25, width: 25}}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="FindFriends"
+        component={FindFriends}
+        options={{
+          tabBarLabel: `Find Friend's`,
+          unmountOnBlur: true,
+          tabBarIcon: ({color, size}) => (
+            <Image
+              source={require('../assets/icon/search.png')}
+              style={{height: 25, width: 25}}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -41,9 +60,12 @@ const main = () => {
         options={{
           tabBarLabel: 'Profile',
           unmountOnBlur: true,
-          // tabBarIcon: ({color, size}) => (
-          //   <Icon name="search" color={color} size={size} />
-          // ),
+          tabBarIcon: ({color, size}) => (
+            <Image
+              source={require('../assets/icon/profile.png')}
+              style={{height: 25, width: 25}}
+            />
+          ),
         }}
       />
     </Tab.Navigator>

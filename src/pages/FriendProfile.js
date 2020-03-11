@@ -36,7 +36,7 @@ export const Profile = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />
-      <Header />
+      <Header title={person.name + ' Profile'} />
       <ScrollView>
         <View
           style={{

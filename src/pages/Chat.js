@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import {GiftedChat, Bubble, Send} from 'react-native-gifted-chat';
 import AsyncStorage from '@react-native-community/async-storage';
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
+import {process} from '../../env';
 
 export default class Chat extends Component {
   constructor(props) {
@@ -20,16 +21,6 @@ export default class Chat extends Component {
       userAvatar: AsyncStorage.getItem('user.photo'),
     };
   }
-  componentDidMount(properties) {
-    OneSignal.init(`${process.env_ONE_SIGNAL_ID}`, {
-      kOSSettingsKeyAutoPrompt: true,
-    }); // set kOSSettingsKeyAutoPrompt to false prompting manually on iOS
-    OneSignal.addEventListener('received', this.onReceived);
-  }
-  componentWillUnmount() {
-    OneSignal.removeEventListener('received', this.onReceived);
-  }
-
   onSend = async () => {
     if (this.state.message.length > 0) {
       let msgId = firebase
@@ -88,6 +79,7 @@ export default class Chat extends Component {
           messageList: GiftedChat.append(previousState.messageList, val.val()),
         }));
       });
+    this.sendNotification();
   };
 
   renderBubble(props) {
@@ -102,16 +94,6 @@ export default class Chat extends Component {
       />
     );
   }
-
-  /// icon berganti saat input text
-  // renderSend = props => {
-  //   if (!props.text.trim()) {
-  //     // text box empty
-  //     return <Icon name="mic" color="#f48023" size={50} />;
-  //   }
-
-  //   return <Icon name="send" color="#f48023" size={50} />;
-  // };
 
   renderSend(props) {
     return (
@@ -138,7 +120,7 @@ export default class Chat extends Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: 'white'}}>
-        <Header />
+        <Header title={this.state.person.name} />
         <GiftedChat
           renderSend={this.renderSend}
           renderBubble={this.renderBubble}

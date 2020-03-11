@@ -84,13 +84,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   menuBottom: {
-    flex: 1,
+    height: 40,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     margin: 5,
     borderRadius: 10,
-    width: '100%',
+    width: '70%',
     backgroundColor: '#5bcab0',
   },
 });

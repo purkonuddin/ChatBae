@@ -14,11 +14,13 @@ export default class App extends Component {
 
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', this.onOpened);
+    OneSignal.addEventListener('ids', this.onIds);
   }
 
   componentWillUnmount() {
     OneSignal.removeEventListener('received', this.onReceived);
     OneSignal.removeEventListener('opened', this.onOpened);
+    OneSignal.addEventListener('ids', this.onIds);
   }
 
   render() {
